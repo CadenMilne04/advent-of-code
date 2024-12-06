@@ -41,16 +41,17 @@ func main() {
     total := 0
     for i := 0; i < len(r_nums); i++ {
         r_occurences[r_nums[i]] += 1
-        value, exists := r_occurences[r_nums[i]]
-        if exists {
-            r_occurences[r_nums[i]] = value + 1
-        } else {
-            r_occurences[r_nums[i]] = 1
-        }
+        // value, exists := r_occurences[r_nums[i]]
+        // if exists {
+        //     r_occurences[r_nums[i]] = value + 1
+        // } else {
+        //     r_occurences[r_nums[i]] = 1
+        // }
     }
     for i := 0; i < len(r_nums); i++ {
         value, exists := r_occurences[l_nums[i]]
         if exists {
+            fmt.Println(value, l_nums[i])
             total += (value * l_nums[i])
         } 
     }
