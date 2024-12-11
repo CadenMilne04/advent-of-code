@@ -1,0 +1,81 @@
+Maybe we should try creating a recursive algorithm that we can DP.
+
+125 17
+
+First Choice To make:
+1. Look at the last number in the list, calculate how many stones it is going to make after 75 revolutions.
+
+R(n)
+base case: 
+if n < 0:
+    return 0
+
+recursive case:
+else:
+    return R(n-1) + stonesThatNumWillMake(nums[n])
+    
+
+DP-ify it:
+
+for (...):
+    R[n] = R[n-1] + stonesThatNumWillMake(nums[n])
+
+Doesn't work, it's still TLE.
+
+Restate the problem:
+P: how many stones will a stone with value x make after 75 blinks?
+
+Input: 17
+
+First Choice:
+1. Perform the action
+
+cStones(x, n)
+bc:
+if n < 0:
+    return 1
+
+rc:
+else:
+    if 0:
+        return R(1, n-1) // THIS IS AN ODD NUMBER
+    elif even:
+        return 1 + R(first half, n-1) + R(second half, n-1) // EACH OF THESE WILL ALWAYS BE ODD NUMBERS
+    else:
+        return R(x * 2024, n-1) // IMPORTANT: THIS WILL ALLWAYS GIVE US AN EVEN NUMBER
+
+DP it:
+
+R[*, 0] = 1
+for: n
+    for: x
+        if 0:
+            R[i, j] = R[1, j-1]
+        elif even:
+            R[i, j] = 1 + R[first half, j-1] + R[second half, j-1]
+        else:
+            R[i, j] = R[i * 2024, j-1]
+
+Doesn't work i is WAYYY too large could not store all the numbers. HOWEVER, we do naur need to all we need to store is the number of digits. Not true.
+
+Example: 
+5 digits: 10000, 99999
+* 2024
+20240000 = 8 digits
+202397976 = 9 digits
+
+3. Store num Digits
+
+cStones(x, n)
+bc:
+if n < 0:
+    return 1
+
+rc:
+else:
+    if 0:
+        return R(1, n-1) 
+    elif even num digits:
+        return 1 + R(first half, n-1) + R(second half, n-1) 
+    else:
+        return R(x * 2024, n-1)
